@@ -19,7 +19,7 @@ class Register extends Controller
         // Validate the input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -34,6 +34,6 @@ class Register extends Controller
         Auth::login($user);
 
         // Redirect to home
-        return redirect('/')->with('success', 'Welcome to Chirpper!');
+        return redirect('/')->with('success', 'Welcome to Chirper!');
     }
 }
