@@ -61,7 +61,7 @@ class ChirpController extends Controller
      */
     public function show(Chirp $chirp)
     {
-        return view('components/chirp', ['chirp' => $chirp]);
+        // return view('chirps.chirp', compact('chirp'));
     }
 
     /**
