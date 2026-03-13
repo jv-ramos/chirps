@@ -16,6 +16,16 @@ describe('Login', function () {
         $this->assertAuthenticated();
     });
 
+    it('should not be able to login with invalid credentials', function () {
+        User::factory()->create(['name' => 'John Doe', 'email' => 'john@example.com', 'password' => '123456789']);
+
+        $response = $this->post('/login', ['email' => 'johndoe@example.com', 'password' => '123456789']);
+
+        $response->assertFound()->assertSessionHasErrors('email');
+        $this->assertGuest();
+    });
+
+
     it('should fail when field is missing', function (string $field) {
         User::factory()->create(['name' => 'John Doe', 'email' => 'john@example.com', 'password' => '123456789']);
 
